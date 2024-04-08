@@ -1,38 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max.c                                              :+:      :+:    :+:   */
+/*   ulstr.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 11:05:40 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/08 11:05:42 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/08 14:32:03 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/08 14:32:05 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 
-int max (int *tab,unsigned int len)
+int	is_lower(char c)
 {
-	int res = 0;
-	unsigned int i = 0 ;
-	if(tab == NULL)
+	if(c >= 'a' && c <= 'z')
+		return(1);
+	else
 		return (0);
-	while(i < len)
-	{
-		if(tab[i] > res)
-			res = tab[i];
-		i++;
-	}
-	return(res);
 }
 
-/*int main (void)
+int	is_upper(char c)
 {
-	unsigned int len = 7;
-	int arr[] = {4,15,11,7,6,5,10};
-	printf("%d",max(arr,len));
-}*/
+	if(c >= 'A' && c <= 'Z')
+		return(1);
+	else
+		return (0);
+}
 
-
+int main (int argc, char **argv)
+{
+	int i = 0;
+	if(argc == 2)
+	{
+		while(argv[1][i])
+		{
+			if(is_lower(argv[1][i]))
+				argv[1][i] = argv[1][i] - 32;
+			else if(is_upper(argv[1][i]))
+				argv[1][i] = argv[1][i] + 32;
+			write(1,&argv[1][i],1);
+			i++;
+		}
+	}
+	write(1,"\n",1);
+	return(0);
+}

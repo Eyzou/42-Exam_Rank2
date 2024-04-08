@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max.c                                              :+:      :+:    :+:   */
+/*   rotone.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 11:05:40 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/08 11:05:42 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/08 10:41:06 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/08 10:41:14 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
-int max (int *tab,unsigned int len)
+int main (int argc , char **argv)
 {
-	int res = 0;
-	unsigned int i = 0 ;
-	if(tab == NULL)
-		return (0);
-	while(i < len)
+	int i = 0;
+	if(argc == 2)
 	{
-		if(tab[i] > res)
-			res = tab[i];
+		while(argv[1][i])
+		{
+		if((argv[1][i] == 'z' ||  argv[1][i] == 'Z'))
+			argv[1][i] = argv[1][i] - 25;
+		else if((argv[1][i] >= 'a' && argv[1][i] <= 'y') || (argv[1][i] >= 'A'&& argv[1][i] <= 'Y'))
+			argv[1][i] = argv[1][i] + 1;
+		write(1,&argv[1][i],1);
 		i++;
+		}
 	}
-	return(res);
+	write (1,"\n",1);
+
 }
-
-/*int main (void)
-{
-	unsigned int len = 7;
-	int arr[] = {4,15,11,7,6,5,10};
-	printf("%d",max(arr,len));
-}*/
-
-

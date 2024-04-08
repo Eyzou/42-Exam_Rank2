@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max.c                                              :+:      :+:    :+:   */
+/*   hodenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 11:05:40 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/08 11:05:42 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/08 13:40:00 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/08 13:40:02 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 
-int max (int *tab,unsigned int len)
+int main (int argc, char **argv)
 {
-	int res = 0;
-	unsigned int i = 0 ;
-	if(tab == NULL)
-		return (0);
-	while(i < len)
+	int i = 0;
+	int j = 0;
+	
+	if(argc == 3)
 	{
-		if(tab[i] > res)
-			res = tab[i];
-		i++;
+		while(argv[2][j] && argv[1][i])
+		{
+			if(argv[2][j] == argv[1][i])
+				i++;
+			j++;
+		}
+		if(argv[1][i] == '\0')
+			write(1,"1",1);
+		else
+			write(1,"0",1);
 	}
-	return(res);
+	write(1,"\n",1);
 }
-
-/*int main (void)
-{
-	unsigned int len = 7;
-	int arr[] = {4,15,11,7,6,5,10};
-	printf("%d",max(arr,len));
-}*/
-
-
