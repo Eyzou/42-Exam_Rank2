@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:21:01 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/15 16:20:26 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/15 11:37:22 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/15 11:53:02 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int lcm(unsigned int a, unsigned int b)
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int *ft_range(int start, int end)
 {
-	unsigned int div;
-	if ( a == 0 || b == 0)
-		return(0);
-	if(a > b)
-		div = a;
+	int len = 0;
+	int i = 0;
+	int *tab;
+	if(start > end)
+		len = start - end + 1;
 	else
-		div = b;
-	while(1)
+		len = end - start + 1;
+	tab = (int *)malloc(sizeof(int)*len +1);
+	while(i < len)
 	{
-		if (div % a == 0 && div % b == 0)
-			return (div);
-		div++;
+		if(start > end)
+		{
+			tab[i] = start;
+			start--;
+			i++;
+		}
+		else
+		{
+			tab[i] = start;
+			start++;
+			i++;
+		}
 	}
-	return(div);
+	return(tab);
 }
-
-/*int main(void)
-{
-
-}*/

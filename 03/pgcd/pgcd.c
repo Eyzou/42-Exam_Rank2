@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   pgcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:21:01 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/15 16:20:26 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/15 16:31:58 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/15 16:47:45 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int lcm(unsigned int a, unsigned int b)
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int	pgcd(int a, int b)
 {
-	unsigned int div;
-	if ( a == 0 || b == 0)
+	int pgcd = 0;
+	int div = 1;
+	if(a <= 0 || b <= 0)
 		return(0);
-	if(a > b)
-		div = a;
-	else
-		div = b;
-	while(1)
+	while(div <= a && div <= b)
 	{
-		if (div % a == 0 && div % b == 0)
-			return (div);
+		if(a % div == 0 && b % div == 0)
+			pgcd = div;
 		div++;
 	}
-	return(div);
+	return(pgcd);
 }
 
-/*int main(void)
+int main (int argc, char **argv)
 {
-
-}*/
+	int res = 0;
+	if(argc == 3)
+	{
+		res = pgcd(atoi(argv[1]), atoi(argv[2]));
+		printf("%i",res);
+	}
+	printf("\n");
+}

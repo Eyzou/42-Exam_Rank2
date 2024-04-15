@@ -5,29 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 17:57:32 by ehamm             #+#    #+#             */
-/*   Updated: 2024/03/28 18:08:19 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/15 11:12:03 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/15 11:20:36 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include "ft_list.h"
+typedef struct    s_list
+{
+    struct s_list *next;
+    void          *data;
+}                 t_list;
+
 
 int	ft_list_size(t_list *begin_list)
 {
-	int i;
-	i = 0;
-
-	if (begin_list)
-		{
-		while(begin_list)
-		{
-			i++;	
-			begin_list=begin_list->next;
-		}
+	int i = 0;
+	while(begin_list)
+	{
+		begin_list = begin_list->next;
+		i++;
 	}
 	return(i);
 }
-

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lcm.c                                              :+:      :+:    :+:   */
+/*   rstr_capitalizer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:21:01 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/15 16:20:26 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/15 17:01:36 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/15 17:16:13 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int lcm(unsigned int a, unsigned int b)
+#include <unistd.h>
+void rstr_capitalizer(char *str)
 {
-	unsigned int div;
-	if ( a == 0 || b == 0)
-		return(0);
-	if(a > b)
-		div = a;
-	else
-		div = b;
-	while(1)
+	int i = 0;
+	while(str[i])
 	{
-		if (div % a == 0 && div % b == 0)
-			return (div);
-		div++;
+		if(str[i] >= 'A' && str[i] <= 'Z')
+			str[i] = str[i] + 32;
+		else if((str[i] >= 'a' && str[i] <= 'z') && (str[i+1] == ' ' || str[i+1] == '\t'))
+			str[i] = str[i] - 32;
+			write(1,&str[i],1);
+			i++;
 	}
-	return(div);
 }
 
-/*int main(void)
+int main (int argc, char **argv)
 {
-
-}*/
+	int i = 0;
+	while(i < argc)
+	{
+		rstr_capitalizer(argv[i]);
+		i++;
+	}
+}

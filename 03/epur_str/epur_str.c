@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hidenp.c                                           :+:      :+:    :+:   */
+/*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:03:45 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/15 12:20:44 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/15 10:28:31 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/15 11:05:22 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int main(int argc, char **argv)
+int main (int argc, char **argv)
 {
 	int i = 0;
-	int j = 0;
-
-	if(argc == 3)
+	int flag = 0;
+	if(argc == 2)
 	{
-		while(argv[1][i] && argv[2][j])
-		{	
-			if(argv[1][i] == argv[2][j])
+		while(argv[1][i] == ' ' || argv[1][i] == '\n' ||argv[1][i] == '\t')
 				i++;
-			j++;
+		while(argv[1][i])		
+		{
+			if(argv[1][i] == ' ' || argv[1][i] == '\n' ||argv[1][i] == '\t')
+				flag = 1;
+			if(argv[1][i] != ' ' && argv[1][i] != '\n' && argv[1][i] != '\t')
+			{
+					if(flag == 1)
+					{
+						write(1," ",1);
+						flag = 0;
+					}
+			write(1,&argv[1][i],1);
+			}
+			i++;
 		}
-		if(argv[1][i] == 0)
-			write(1,"1",1);
-		else
-			write(1,"0",1);
 	}
 	write(1,"\n",1);
 }

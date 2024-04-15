@@ -1,40 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_str.c                                       :+:      :+:    :+:   */
+/*   ft_rrange.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 11:05:37 by ehamm             #+#    #+#             */
-/*   Updated: 2024/04/15 11:11:36 by ehamm            ###   ########.fr       */
+/*   Created: 2024/04/15 11:53:21 by ehamm             #+#    #+#             */
+/*   Updated: 2024/04/15 12:03:03 by ehamm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int main (int argc, char **argv)
+int	*ft_rrange(int start, int end)
 {
+	int len;
+	int *tab;
 	int i = 0;
-	int flag = 0;
-	if(argc == 2)
+	if(start > end)
+		len = start - end + 1;
+	else
+		len = end - start + 1;
+	tab =(int *)malloc(sizeof(int)* len + 1);
+	while(i < len)
 	{
-		while(argv[1][i] == ' ' || argv[1][i] == '\t' || argv[1][i] == '\n')
-		i++;
-		while(argv[1][i])
+		if(end > start)
 		{
-			if(argv[1][i] == ' ' || argv[1][i] == '\t' || argv[1][i] == '\n')
-				flag = 1;
-			if(argv[1][i] != ' ' && argv[1][i] != '\t' && argv[1][i] != '\n')
-			{
-				if(flag == 1)
-				{
-					write(1,"   ",3);
-					flag = 0;
-				}
-				write(1, &argv[1][i],1);
-			}
+			tab[i] = end;
+			end--;
+			i++;
+		}
+		else
+		{
+			tab[i] = end;
+			end++;
 			i++;
 		}
 	}
-	write(1,"\n",1);
+	return(tab);
 }
+/*int main(void)
+{
+	int *tab = ft_rrange(15,-5);
+	printf("%i",tab[0]);
+	printf("%i",tab[1]);
+	printf("%i",tab[2]);
+}*/
